@@ -20,6 +20,9 @@ def main() -> None:
     path = os.path.join(out_dir, "entry.txt")
     with open(path, "w", encoding="utf-8", newline="") as f:
         f.write(STORY)
+    # Verify the bytes landed exactly as intended before exiting.
+    with open(path, encoding="utf-8", newline="") as f:
+        assert f.read() == STORY, "entry.txt does not match the story"
 
 
 if __name__ == "__main__":
